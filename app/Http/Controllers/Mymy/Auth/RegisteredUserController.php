@@ -32,19 +32,19 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . Mymy::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' .Mymy::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $owner = Mymy::create([
+        $mymy = Mymy::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($owner));
+        event(new Registered($mymy));
 
-        Auth::guard('mymys')->login($owner);
+        Auth::guard('mymys')->login($mymy);
 
         return redirect(RouteServiceProvider::MYMY_HOME);
     }

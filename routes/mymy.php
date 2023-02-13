@@ -30,7 +30,7 @@ Route::get('/', function () {
 Route::get('dashboard', function () {
     return view('mymy.dashboard');
 })->middleware(['auth:mymys'])->name('dashboard');
-//owneresの権限があるとログインできる
+
 
 Route::middleware('auth:mymys')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
