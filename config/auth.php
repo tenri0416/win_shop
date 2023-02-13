@@ -52,6 +52,10 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
+        'mymys' => [
+            'driver' => 'session',
+            'provider' => 'mymys',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -88,6 +92,10 @@ return [
         'admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'mymys' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mymy::class,
         ],
 
         // 'users' => [
@@ -127,6 +135,12 @@ return [
         'admin' => [
             'provider' => 'admin',
             'table' => 'admin_password_resets',
+            'expire' => 60, //期限60 日間
+            'throttle' => 60, //ログイン制限60秒　ログイン失敗で
+        ],
+        'mymys' => [
+            'provider' => 'mymys',
+            'table' => 'mymys_password_resets',
             'expire' => 60, //期限60 日間
             'throttle' => 60, //ログイン制限60秒　ログイン失敗で
         ],

@@ -20,6 +20,8 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/dashboard';
     public const OWNER_HOME = '/owner/dashboard';
     public const ADMIN_HOME = '/admin/dashboard';
+
+    public const MYMY_HOME='/mymy/dashboard';
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
@@ -48,6 +50,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
+
+            Route::prefix('mymy')
+                ->as('mymy.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/mymy.php'));
 
             Route::prefix('/')
                 ->as('user.')
