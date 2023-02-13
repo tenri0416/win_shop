@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Mymy\Auth;
 
 use App\Http\Controllers\Controller;
-use App\ModelsMymy;
+use App\Models\Mymy;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $owner = Mymyr::create([
+        $owner = Mymy::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),

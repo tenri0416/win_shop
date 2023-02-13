@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Mymy extends Authenticatable
 {
     use HasFactory,SoftDeletes;
+    protected $table='mymys';
     protected $fillable = [
         'name',
         'email',
