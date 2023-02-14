@@ -9,6 +9,8 @@ use App\Http\Controllers\Mymy\Auth\PasswordController;
 use App\Http\Controllers\Mymy\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Mymy\Auth\RegisteredUserController;
 use App\Http\Controllers\Mymy\Auth\VerifyEmailController;
+use App\Http\Controllers\Mymy\FillauthController;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -31,6 +33,15 @@ Route::get('dashboard', function () {
     return view('mymy.dashboard');
 })->middleware(['auth:mymys'])->name('dashboard');
 
+Route::resource('fillauth',FillauthController::class)->middleware('auth:mymys');
+
+
+Route::prefix('expired-mymy')->middleware('auth:mymys')->group(function () {
+    Route::get('delete', [FillauthController::class, 'deleteIndex'])->name('expired-mymys.index');
+    //->name('expired-owners.index');
+    // Route::post('destroy/{owner}', [FillauthController::class, 'expiredOwnerDestroy'])
+    //     ->name('expired-owners.destroy');
+});
 
 Route::middleware('auth:mymys')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
