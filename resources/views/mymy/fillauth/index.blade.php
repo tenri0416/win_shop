@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
          Myユーザー確認画面
         </h2>
-        <a href="{{route('mymy.expired-mymys.index')}}">
+        <a href="{{route('mymy.expired-fillauth.index')}}">
             <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="width: 20x; height: 20px; opacity: 1;" xml:space="preserve">
                 <style type="text/css">
                     .st0{fill:#4B4B4B;}
@@ -31,6 +31,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+
+                <x-flash-message status="info" />
 
 
                 <section class="text-gray-600 body-font">
@@ -60,7 +62,7 @@
                             <form method="post"action="{{route('mymy.fillauth.destroy',['fillauth'=>$my->id])}}">
                                 @csrf
                                 @method('DELETE')
-                            <button class="bg-red-500 hover:bg-red-400 text-white rounded px-4 py-2">削除</button>
+                            <button type="submit"class="bg-red-500 hover:bg-red-400 text-white rounded px-4 py-2"onclick="deletePost(this)">削除</button>
                             </form>
                         </div>
                     </div>
@@ -76,4 +78,12 @@
             </div>
         </div>
     </div>
+    <script>
+        function deletePost(e) {
+        'use strict';
+        if (confirm('本当に削除してもいいですか?')) {
+        document.getElementById('delete_' + e.dataset.id).submit();
+        }
+        }
+        </script>
 </x-app-layout>

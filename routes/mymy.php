@@ -36,8 +36,10 @@ Route::get('dashboard', function () {
 Route::resource('fillauth',FillauthController::class)->middleware('auth:mymys');
 
 
-Route::prefix('expired-mymy')->middleware('auth:mymys')->group(function () {
-    Route::get('delete', [FillauthController::class, 'deleteIndex'])->name('expired-mymys.index');
+Route::prefix('expired-fillauth')->middleware('auth:mymys')->group(function () {
+    Route::get('delete', [FillauthController::class, 'deleteIndex'])->name('expired-fillauth.index');
+    Route::post('restore/{fillauth}', [FillauthController::class, 'restore'])->name('expired-fillauth.restore');
+    Route::post('forcedelete/{fillauth}', [FillauthController::class, 'forceDelete'])->name('expired-fillauth.forcedelete');
     //->name('expired-owners.index');
     // Route::post('destroy/{owner}', [FillauthController::class, 'expiredOwnerDestroy'])
     //     ->name('expired-owners.destroy');

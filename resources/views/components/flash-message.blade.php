@@ -1,6 +1,7 @@
 @props(['status' => 'info'])
 
 @php
+
     if (session('status') === 'info') {
         $bgColor = 'bg-blue-300';
     }

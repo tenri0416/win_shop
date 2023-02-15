@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 class FillauthController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth:mymys');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -90,7 +93,7 @@ class FillauthController extends Controller
     public function destroy($id)
     {
         Mymy::findOrFail($id)->delete();
-        return redirect()->route('mymy.fillauth.index');
+        return redirect()->route('mymy.fillauth.index')->with('message','削除しました');
     }
 
     public function deleteIndex()
@@ -100,6 +103,20 @@ class FillauthController extends Controller
             'mymy.fillauth.delete_index',
             compact('expiredMymys')
         );
+    }
+
+    public function restore($id){
+
+        // dd('restore');
+        Mymy::onlyTrashed()->whereId($id)->restore();//復元
+        return redirect()->route('mymy.fillauth.index');
+
+    }
+
+    public function forceDelete($id){
+        Mymy::onlyTrashed()->whereId($id)->forceDelete();//完全削除
+        return redirect()->route('mymy.expired-fillauth.index');
+
     }
 
 
