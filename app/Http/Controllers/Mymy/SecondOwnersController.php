@@ -108,4 +108,27 @@ class SecondOwnersController extends Controller
         Owner::findOrFail($id)->delete();
         return redirect()->route('mymy.owners.index')->with(['message'=>'削除しました','status'=>'alert']);
     }
+
+    public function deleteIndex()
+    {
+        $expiredMymys = Owner::onlyTrashed()->get();
+        return view(
+            'mymy.owner.delete_index',
+            compact('expiredMymys')
+        );
+    }
+
+    public function restore($id){
+
+        // dd('restore');
+        Owner::onlyTrashed()->whereId($id)->restore();//復元
+        return redirect()->route('mymy.owners.index')->with(['message'=>'復元しました','status'=>'fukugen']);
+
+    }
+
+    public function forceDelete($id){
+        Owner::onlyTrashed()->whereId($id)->forceDelete();//完全削除
+        return redirect()->route('mymy.expired-owners.index')->with(['message'=>'完全に削除しました','status'=>'sakujyo']);
+
+    }
 }
