@@ -32,7 +32,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
-                <x-flash-message status="info" />
+                <x-flash-message status="session('status')" />
 
 
                 <section class="text-gray-600 body-font">
@@ -68,12 +68,13 @@
                     </div>
                     @endforeach
 
-                        </div>
+                </div>
 
 
-                      </div>
-                    </div>
-                  </section>
+            </div>
+        </div>
+    </section>
+    {{$mymys->links()}}
 
             </div>
         </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Mymy\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Mymy\Auth\RegisteredUserController;
 use App\Http\Controllers\Mymy\Auth\VerifyEmailController;
 use App\Http\Controllers\Mymy\FillauthController;
+use App\Http\Controllers\Mymy\SecondOwnersController;
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,8 @@ Route::get('dashboard', function () {
 })->middleware(['auth:mymys'])->name('dashboard');
 
 Route::resource('fillauth',FillauthController::class)->middleware('auth:mymys');
+
+Route::resource('owners',SecondOwnersController::class)->middleware('auth:mymys');
 
 
 Route::prefix('expired-fillauth')->middleware('auth:mymys')->group(function () {

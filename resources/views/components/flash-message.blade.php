@@ -2,11 +2,17 @@
 
 @php
 
-    if (session('status') === 'info') {
+    if (session('status') =='info') {
         $bgColor = 'bg-blue-300';
     }
     if (session('status') == 'alert') {
         $bgColor = 'bg-red-500';
+    }
+    if(session('status')==='fukugen') {
+        $bgColor = 'bg-green-500';
+    }
+    if(session('status')==='sakujyo'){
+        $bgColor = 'bg-red-600';
     }
 @endphp
 

@@ -18,7 +18,10 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('mymy.fillauth.index')" :active="request()->routeIs('mymy.fillauth.index')">
-                        全一覧
+                        My ユーザー一覧
+                    </x-nav-link>
+                    <x-nav-link :href="route('mymy.owners.index')" :active="request()->routeIs('mymy.owners.index')">
+                        オーナー一覧
                     </x-nav-link>
                 </div>
             </div>

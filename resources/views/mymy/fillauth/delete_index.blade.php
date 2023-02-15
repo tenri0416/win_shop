@@ -10,6 +10,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+
+
+                <x-flash-message status="session('status')" />
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
 
@@ -17,6 +20,7 @@
                         <div class="container px-5 py-24 mx-auto">
                           <div class="flex flex-col text-center w-full mb-20">
                             <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">削除済みユーザー</h1>
+
 
                           </div>
                           <div class="lg:w-2/3 w-full mx-auto overflow-auto">

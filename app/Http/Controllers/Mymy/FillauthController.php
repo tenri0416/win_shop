@@ -19,8 +19,8 @@ class FillauthController extends Controller
      */
     public function index()
     {
-        $mymys=Mymy::all();
-        return view('mymy.fillauth.index')->with('mymys',$mymys);
+        $mymys=Mymy::select('id','name','email','created_at')->paginate(6);
+        return view('mymy.fillauth.index',compact('mymys'))->with('mymys',$mymys);
     }
 
     /**
@@ -81,7 +81,7 @@ class FillauthController extends Controller
         $mymy->email=$request->email;
         $mymy->password = Hash::make($request->password);
         $mymy->save();
-        return redirect()->route('mymy.fillauth.index');
+        return redirect()->route('mymy.fillauth.index')->with(['message' => '編集しました','status'=>'alert']);
     }
 
     /**
@@ -93,7 +93,7 @@ class FillauthController extends Controller
     public function destroy($id)
     {
         Mymy::findOrFail($id)->delete();
-        return redirect()->route('mymy.fillauth.index')->with('message','削除しました');
+        return redirect()->route('mymy.fillauth.index')->with(['message'=>'削除しました','status'=>'alert']);
     }
 
     public function deleteIndex()
@@ -109,13 +109,13 @@ class FillauthController extends Controller
 
         // dd('restore');
         Mymy::onlyTrashed()->whereId($id)->restore();//復元
-        return redirect()->route('mymy.fillauth.index');
+        return redirect()->route('mymy.fillauth.index')->with(['message'=>'復元しました','status'=>'fukugen']);
 
     }
 
     public function forceDelete($id){
         Mymy::onlyTrashed()->whereId($id)->forceDelete();//完全削除
-        return redirect()->route('mymy.expired-fillauth.index');
+        return redirect()->route('mymy.expired-fillauth.index')->with(['message'=>'完全に削除しました','status'=>'sakujyo']);
 
     }
 
